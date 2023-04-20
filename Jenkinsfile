@@ -6,13 +6,13 @@
     stages {
        stage ('Build') {
              steps {
-                     echo 'Building..'
+                       sh './gradlew assemble'
              }
        }
 
        stage ('Test') {
              steps {
-                    echo 'Building..'
+                   sh './gradlew test'
              }
        }
 
