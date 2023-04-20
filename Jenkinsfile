@@ -20,7 +20,7 @@
              steps{
                    withAWS(credentials: 'aws-acceskey', region: 'us-east-1') {
                     script {
-                       if (env.BRANCH_NAME == 'main' {
+                       if (env.BRANCH_NAME == 'main') {
                           sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
                           }
                     }
