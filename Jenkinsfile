@@ -19,8 +19,10 @@
        stage('Deploy AWS'){
              steps{
                   script{
-                       echo 'Building..'
-               }
+                        withAWS(credentials: 'aws-credentials', region: env.AWS_REGION) {
+                                          sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
+                        }
+                  }
              }
        }
   }
