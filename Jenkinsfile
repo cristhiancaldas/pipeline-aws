@@ -1,27 +1,29 @@
  pipeline {
    agent any
-   tools {
-        jdk   'JAVA_HOME'
-   }
     stages {
+
        stage ('Build') {
              steps {
-                       sh './gradlew assemble'
+                  sh './gradlew assemble'
              }
        }
 
        stage ('Test') {
              steps {
-                   sh './gradlew test'
+                  sh './gradlew test'
              }
        }
 
-       stage('Deploy AWS'){
+       stage('Deploy to AWS'){
+             if (env.BRANCH_NAME == 'main') {
              steps{
-                        withAWS(credentials: 'aws-acceskey', region: env.AWS_REGION) {
-                           sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
-                        }
+                   withAWS(credentials: 'aws-acceskey', region: 'us-east-1') {
+                      sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
+                   }
              }
+          }else {
+             echo "${env.BRANCH_NAME}"
+          }
        }
-  }
+   }
  }

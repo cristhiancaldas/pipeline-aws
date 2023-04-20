@@ -4,5 +4,5 @@ Resources:
   EncryptedS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub 'demo-bucket-${AWS::Region}-${AWS::AccountId}'
+      BucketName: !Sub 'pipeline-aws-${AWS::Region}-${AWS::AccountId}'
     DeletionPolicy: Delete
