@@ -1,3 +1,6 @@
+
+ def branchType = getBranchType "${env.BRANCH_NAME}"
+
  pipeline {
    agent any
     stages {
@@ -15,15 +18,16 @@
        }
 
        stage('Deploy to AWS'){
-             if (env.BRANCH_NAME == 'main') {
              steps{
                    withAWS(credentials: 'aws-acceskey', region: 'us-east-1') {
-                      sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
+                    script {
+                       if (env.BRANCH_NAME == 'main' && branchType == 'pull-request') {
+                          sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
+                          }
+                    }
                    }
-             }
-          }else {
-             echo "${env.BRANCH_NAME}"
-          }
+            }
+            // echo "${env.BRANCH_NAME}"
        }
    }
  }
