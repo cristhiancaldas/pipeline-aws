@@ -17,19 +17,23 @@
        }
 
        stage('Deploy to AWS'){
+              when {
+                        branch 'main'
+                   }
              steps{
                    withAWS(credentials: 'aws-acceskey', region: env.AWS_REGION) {
-                    script {
-                    echo env.BRANCH_NAME
-                    echo "user: ${env.BRANCH_NAME}"
-                       if (env.BRANCH_NAME == 'main') {
                           sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
-                          }else {
-                          echo 'No estas en la rama correcta'
-                          }
-                    }
                    }
             }
        }
+
+       stage('Deploy to AWS develop'){
+                     when {
+                               branch 'develop'
+                          }
+                    steps{
+                        echo 'rama develop'
+                   }
+              }
    }
  }
