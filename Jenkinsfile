@@ -22,6 +22,8 @@
                     script {
                        if (env.BRANCH_NAME == 'main') {
                           sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
+                          }else {
+                          echo 'No estas en la rama correcta'
                           }
                     }
                    }
