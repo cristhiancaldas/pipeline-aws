@@ -1,6 +1,5 @@
 #  ✅ 🆓 Pipeline CI/CD para Despliegues en AWS con Jenkins
-El siguiente repositorio contiene las fuentes de un pipeline para realizar un despliegue en AWS en este caso se ejecutara un archivo
-de cloudformation para que construya un S3.
+En el siguiente repositorio se encuentra las fuentes de una aplicación Spring Boot simple para luego realizar la compilación mediante un pipeline de Jenkins cada vez que se envié un nuevo cambio a nuestro repositorio Git. Cabe mencionar que realizaremos un despliegue en AWS utilizando CloudFormation para construir un Bucket S3.
 ## Badges
 
 ![GitHub Repo in Size](https://img.shields.io/github/languages/code-size/cristhiancaldas/pipeline-aws)    ![GitHub Total Lines](https://img.shields.io/tokei/lines/github/cristhiancaldas/pipeline-aws)    ![Languaje Java](https://img.shields.io/github/languages/top/cristhiancaldas/pipeline-aws)    ![MIT License](https://img.shields.io/github/last-commit/cristhiancaldas/pipeline-aws)
