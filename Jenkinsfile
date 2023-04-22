@@ -18,7 +18,7 @@
 
        stage('Deploy to AWS'){
               when {
-                        branch 'main'
+                        branch 'master'
                    }
              steps{
                    withAWS(credentials: 'aws-acceskey', region: env.AWS_REGION) {
