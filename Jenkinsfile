@@ -18,14 +18,8 @@
 
        stage('Deploy to AWS'){
              steps{
-                   withAWS(credentials: 'aws-acceskey', region: 'us-east-1') {
-                    script {
-                       if (env.BRANCH_NAME == 'main') {
+                   withAWS(credentials: 'aws-acceskey', region: env.AWS_REGION) {
                           sh './gradlew awsCfnMigrateStack awsCfnWaitStackComplete'
-                          }else {
-                          echo 'No estas en la rama correcta'
-                          }
-                    }
                    }
             }
        }
